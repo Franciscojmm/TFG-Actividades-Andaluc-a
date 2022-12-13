@@ -35,7 +35,7 @@ class ActivityController extends Controller
         $resultado = Activity::select('*')->enseñanza($request->teaching)->get();
         $enseñanzas = Teaching::all();
 
-        return view('welcome', ["resultado" => $resultado ,"enseñanzas"=>$enseñanzas]);
+        return view('/Activities.listado_activities', ["resultado" => $resultado ,"enseñanzas"=>$enseñanzas]);
 
     }
 
