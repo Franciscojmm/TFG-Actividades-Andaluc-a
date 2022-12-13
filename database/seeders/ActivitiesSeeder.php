@@ -62,6 +62,15 @@ class ActivitiesSeeder extends Seeder
             'place' => 1,
             'type' => 2
         ]);
+        
+        Activity::create([
+            'name' => 'Seminario FP Avanzado',
+            'description' => 'Seminario para los profesores que imparten FP en los centros de Andalucía.',
+            'date' => date("Y/m/d H:i:s" , strtotime($fecha_actual."- 5 days")),
+            'teaching' => 5,
+            'place' => 2,
+            'type' => 2
+        ]);
 
     }
 
