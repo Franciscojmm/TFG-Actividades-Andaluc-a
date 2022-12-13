@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     @role('encargado')
     @if(Session::has('notificationE'))
         <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -9,7 +8,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @elseif(Session::has('notification'))
-        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
             {{Session::get('notification')}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -17,79 +16,58 @@
 
 
     <div class="row">
-        <p class="h1">Listado de Usuarios</p>
+        <p class="h1">Listado de Actividades</p>
 
         <div class="cabezeraTables">
 
-
-            <div class="auste">
-            <form method="GET" action="{{ route('crear_usuario') }}">
+            <form method="GET" action="{{ route('crear_actividad') }}">
                 @csrf
-                <button type="submit" class="btn btn-success" id="create" name="create" style="margin-left: 2%; float: right" > Crear Usuario </button>
+                <button type="submit" class="btn btn-success" id="create" name="create" style="margin-left: 2%; float: right" > Crear Actividad </button>
             </form>
-
-            <form method="POST" action="{{ route('descargar_pdf') }}">
+            <form method="POST" action="{{ route('listado_actividades_pdf') }}">
                 @csrf
                 <button type="submit" class="btn btn-info" id="create" name="create" style="float: right" > Descargar PDF </button>
             </form>
+        </div>
 
-            <form method="GET" action="{{ route('listado_usus_eliminados') }}">
+
+        <div class="filtros">
+            <form method="GET" action="{{ route('listado_actividades') }}">
                 @csrf
-                <button type="submit" class="btn btn-dark" id="create" name="create" style="margin-right: 2%; float: right; " > Listado de bloqueados </button>
-            </form>
+            <div class="row" style="margin-bottom: 2%">
+                <label class="col-sm-2 col-xl-1 col-l-2 col-form-label text-md-end">{{ __('Cuerpos Educativos :') }}</label>
+                <div class="col-sm-4 col-md-2">
+            <select name='teaching' class="form-control">
+                <option value={{-1}}>{{"Todos"}}</option>
+                @foreach ($enseñanzas as $teaching)
+                    <option value="{{$teaching->id}}">{{$teaching->name}}</option>
+                @endforeach
+            </select>
             </div>
-        </div>
-
-
-        <div class="filtros" style="margin-bottom: 1%">
-
-            <form method="GET" action="{{ route('listado_usu') }}">
-                @csrf
-                <div class="row">
-                    <label class="col-2 col-form-label text-md-start">{{ __('Actividades :') }}</label>
-                    <div class="col-md-2">
-                        <select name='actividadSeleccionada' class="form-control">
-                            <option value={{-1}}>{{"Todas"}}</option>
-                            @if(isset($actividadSeleccionada))
-                            @foreach ($actividades as $actividad)
-                                @if($actividadSeleccionada == $actividad->id)
-                                <option value="{{$actividad->id}}" selected>{{$actividad->name}}</option>
-                                    @else
-                                        <option value="{{$actividad->id}}">{{$actividad->name}}</option>
-                                    @endif
-                            @endforeach
-                            @else
-                                @foreach ($actividades as $actividad)
-                                    <option value="{{$actividad->id}}">{{$actividad->name}}</option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-                    <div class="col-2 text-end">
-                        <button type="submit" class="btn btn-secondary">
-                            {{ __('Filtrar') }}
-                        </button></div>
-                </div>
+                <div class="col-2 text-end btn-filtro" style="float: left;">
+                <button type="submit" class="btn btn-secondary " style="float: left;">
+                    {{ __('Filtrar') }}
+                </button></div>
+            </div>
             </form>
         </div>
-
-
 
         <div class="table-responsive-xxl">
             <table id="users" class="table table-responsive-xxl">
                 <thead class="listados-head">
-                <tr><th>Nombre</th> <th>Apellidos</th>  <th>DNI</th> <th>Email</th> <th>Enseñanza</th> <th>Cod. Centro</th> <th>Editar</th>  <th>Eliminar</th></tr>
+                <tr><th>Nombre</th> <th>Descripción</th>  <th>Fecha</th> <th>Hora</th> <th>Tipo de actividad</th> <th>Lugar</th> <th>Enseñanza</th> <th>Editar</th>  <th>Eliminar</th></tr>
                 </thead>
                 <tbody class="listados-body">
                 @foreach ($resultado as $resul)
                     <tr> <td>{{ $resul->name}}</td>
-                        <td>{{ $resul->surname}}</td>
-                        <td>{{ $resul->dni}}</td>
-                        <td>{{ $resul->email}}</td>
+                        <td>{{ $resul->description}}</td>
+                        <td>{{date("d/m/Y" , strtotime($resul->date)) }}</td>
+                        <td>{{date("H:i" , strtotime($resul->date))  }}</td>
+                        <td>{{ $resul->types->name}}</td>
+                        <td>{{ $resul->places->name}}</td>
                         <td>{{ $resul->teachings->name}}</td>
-                        <td>{{ $resul->center_code}}</td>
                         <td>
-                            <form method="GET" action="{{ route('editar_usu' ,$resul->id) }}">
+                            <form method="GET" action="{{ route('editar_actividad' ,$resul->id) }}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$resul->id}}">
                                 <button type="submit" class="btn btn-info"> Editar </button>
@@ -97,7 +75,7 @@
                         </td>
 
                         <td>
-                            <button type="button" class="btn btn-danger bloquearUsuBtn" data-bs-toggle="modal" data-bs-target="#deleteModal" value="{{$resul->id}}">
+                            <button type="button" class="btn btn-danger borrarActividad" data-bs-toggle="modal" data-bs-target="#deleteModal" value="{{$resul->id}}">
                                 Eliminar
                             </button>
                         </td>
@@ -114,15 +92,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">¿Seguro que quiere bloquear este usuario?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">¿Seguro que quiere eliminar esta actividad?</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <form method="POST" action="{{ route('eliminar_usu')}}">
+                    <p>¡Esta acción no se podrá revertir!</p>
+                    <form method="POST" action="{{ route('borrar_actividad')}}">
                         @csrf
                         <input type="hidden" name="id" id="valueId" >
                         <button type="submit" class="btn btn-danger"> Eliminar </button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                     </form>
                 </div>
             </div>
@@ -167,7 +146,7 @@
     </script>
     <script>
         $(document).ready(function () {
-            $(document).on('click','.bloquearUsuBtn', function (e){
+            $(document).on('click','.borrarActividad', function (e){
                 e.preventDefault();
 
                 var usuId = $(this).val();

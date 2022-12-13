@@ -1,0 +1,133 @@
+body{
+    background-color: #F3EFE0!important;
+}
+.menu{
+background-color: #22A39F;
+
+}
+nav-link{
+    color: #F3EFE0!important;
+}
+
+.card_login_register{
+
+}
+.card_header_login_register{
+    background-color: #434242!important;
+    color: white!important;
+}
+.listados-body{
+  border: #1a202c!important;
+  background-color: white;
+}
+.listados-head{
+    border: #1a202c!important;
+    background-color: #434242!important;
+    color: white!important;
+}
+th{
+    justify-content: center!important;
+    align-items: center!important;
+}
+.error{
+    background-color: yellow;
+}
+a.page-link{
+    color: #434242!important;
+    background-color: #22A39F!important;
+    border-color: white!important;
+}
+a.page-link.active{
+    color: white!important;
+}
+
+.cabezeraTables{
+    margin-bottom: 15px;
+}
+.py-4{
+    margin: 1%;
+}
+
+@media (max-width: 700px) {
+    .py-4{
+        margin: 4%;
+    }
+    li{
+        margin-left: 2%;
+    }
+    .card-header{
+        text-align: center;
+    }
+    #create{
+        margin-top: 1%;
+    }
+    .perf-btn
+    {
+        margin-left: 0% !important;
+        text-align: center;
+    }
+    .btn-filtro {
+        margin-top: 5px;
+        margin-bottom: 5px
+    }
+}
+li{
+    display: flex!important;
+    align-items: center!important;
+    font-family: SansSerif;
+}
+
+.alert{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link{
+    color: #222222!important;
+    font-weight: 400!important;
+}
+
+img{
+    border-radius: 30px;
+}
+.enunciados{
+    font-weight: 600;
+
+}
+.card_activities{
+    margin-bottom: 3%;
+}
+
+.btn_home{
+    display: block!important;
+}
+.card_home{
+    margin-bottom: 2%;
+}
+
+.btn:hover{
+    transition: all 1s;
+    transform: scale(1.1);
+}
+li:hover{
+    transform: translateY(-5px);
+}
+
+.alert{
+    margin-left: 20%!important;
+    margin-right: 20%!important;
+}
+.card-head-activities{
+    background-color: #434242!important;
+    color: white!important;
+    min-height: 60px;
+    font-family: sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cards-activities{
+    min-height: 405px;
+}

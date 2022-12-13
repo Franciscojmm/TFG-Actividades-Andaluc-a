@@ -21,11 +21,16 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('dni')->unique();
-            $table->string('body');
-            $table->integer('center_code');
+            $table->bigInteger('body')->unsigned()->index();
+            $table->char('center_code');
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
             $table->index('id');
+        });
+        Schema::table('users', function(Blueprint $table)
+        {
+            $table->foreign('body')->references('id')->on('teachings');
         });
     }
 
