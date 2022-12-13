@@ -46,7 +46,7 @@
             <form method="GET" action="{{ route('listado_usu') }}">
                 @csrf
                 <div class="row">
-                    <label class="col-2 col-form-label text-md-start">{{ __('Actividades :') }}</label>
+                    <label class="col-sm-3 col-lg-1 col-form-label text-md-start">{{ __('Actividades :') }}</label>
                     <div class="col-md-2">
                         <select name='actividadSeleccionada' class="form-control">
                             <option value={{-1}}>{{"Todas"}}</option>
@@ -166,7 +166,10 @@
         });
     </script>
     <script>
+        console.log({{Auth::id()}});
+
         $(document).ready(function () {
+
             $(document).on('click','.bloquearUsuBtn', function (e){
                 e.preventDefault();
 

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     @role('encargado')
     @if(Session::has('notificationE'))
         <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -15,8 +16,9 @@
     @endif
 
 
+
     <div class="row">
-        <p class="h1">Listado de Actividades</p>
+        <p class="h1">Listado de Actividades </p>
 
         <div class="cabezeraTables">
 
@@ -35,8 +37,8 @@
             <form method="GET" action="{{ route('listado_actividades') }}">
                 @csrf
             <div class="row" style="margin-bottom: 2%">
-                <label class="col-sm-2 col-xl-1 col-l-2 col-form-label text-md-end">{{ __('Cuerpos Educativos :') }}</label>
-                <div class="col-sm-4 col-md-2">
+                <label class="col-sm-3 col-xl-1 col-md-2 col-form-label text-md-end">{{ __('Cuerpos Educativos :') }}</label>
+                <div class="col-sm-12 col-md-12 col-lg-2">
             <select name='teaching' class="form-control">
                 <option value={{-1}}>{{"Todos"}}</option>
                 @foreach ($enseñanzas as $teaching)
@@ -44,7 +46,20 @@
                 @endforeach
             </select>
             </div>
-                <div class="col-2 text-end btn-filtro" style="float: left;">
+                <div class="row col-lg-4">
+                    <label class="col-sm-8 col-xl-3 col-l-2 col-form-label text-start">{{ __('Fecha inicial :') }}</label>
+                    <div class="col-lg-8">
+                        <input id="date" class="form-control" type="datetime-local"   name="date_ini"  autocomplete="date" >
+                    </div>
+                </div>
+                <div class="row col-lg-4">
+                    <label class="col-sm-8 col-xl-3 col-l-2 col-form-label text-start">{{ __('Fecha final :') }}</label>
+                    <div class="col-lg-8 mb-1">
+                        <input id="date" class="form-control" type="datetime-local"   name="date_fin"  autocomplete="date" >
+                    </div>
+                </div>
+
+                <div class="col-1 text-end btn-filtro" style="float: left;">
                 <button type="submit" class="btn btn-secondary " style="float: left;">
                     {{ __('Filtrar') }}
                 </button></div>
@@ -53,7 +68,7 @@
         </div>
 
         <div class="table-responsive-xxl">
-            <table id="users" class="table table-responsive-xxl">
+            <table id="activities" class="table table-responsive-xxl">
                 <thead class="listados-head">
                 <tr><th>Nombre</th> <th>Descripción</th>  <th>Fecha</th> <th>Hora</th> <th>Tipo de actividad</th> <th>Lugar</th> <th>Enseñanza</th> <th>Editar</th>  <th>Eliminar</th></tr>
                 </thead>
@@ -75,7 +90,7 @@
                         </td>
 
                         <td>
-                            <button type="button" class="btn btn-danger borrarActividad" data-bs-toggle="modal" data-bs-target="#deleteModal" value="{{$resul->id}}">
+                            <button type="button" class="btn btn-danger borrarActividad" data-bs-toggle="modal" data-bs-target="#deleteModalActivity" value="{{$resul->id}}">
                                 Eliminar
                             </button>
                         </td>
@@ -88,7 +103,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModalActivity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -120,7 +135,7 @@
     <script src="//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"></script>
     <script>
         $(document).ready(function () {
-            $('#users').DataTable({
+            $('#activities').DataTable({
                 language: {
                     "decimal": "",
                     "emptyTable": "No hay información",
@@ -149,8 +164,8 @@
             $(document).on('click','.borrarActividad', function (e){
                 e.preventDefault();
 
-                var usuId = $(this).val();
-                $('#valueId').val(usuId);
+                var activityId = $(this).val();
+                $('#valueId').val(activityId);
 
             });
         });

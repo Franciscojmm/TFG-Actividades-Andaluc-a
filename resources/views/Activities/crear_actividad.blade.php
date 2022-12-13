@@ -107,14 +107,14 @@
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button id="id_submitbutton" type="submit" class="btn btn-secondary">
+                                    <button id="id_submitbutton" type="submit" class="btn" style="background-color: #22A39F!important;color: white">
                                         {{ __('Crear Actividad') }}
                                     </button>
-                                    <button type="button" class="btn btn-link" style="background-color: #22A39F!important;">
-                                        <a style="color: white" href="{{route('listado_actividades')}}">
+
+                                        <a class="btn btn-secondary" href="{{route('listado_actividades')}}">
                                             Volver Atras
                                         </a>
-                                    </button>
+
                                 </div>
                             </div>
                         </form>

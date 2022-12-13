@@ -16,7 +16,7 @@ use App\Http\Controllers\UserActivityController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('/home');
 })->name('/');
 
 Route::post('/', function () {
@@ -88,3 +88,4 @@ Route::post('/procesar_cambio', [UserActivityController::class,'procesarCambioAc
 Route::post('/listado_actividades_pdf', [ActivityController::class,'descargarListadoPDF'])->name('listado_actividades_pdf');
 
 
+Route::post('/listado_participantes_pdf', [UserActivityController::class,'descargarparticipantesPDF'])->name('descargar_pdf_participantes');

@@ -29,5 +29,14 @@ class Activity extends Model
         if($buscar != -1)
             return $query->where('teaching','=',"$buscar");
     }
+    public function scopeFechaIn($query ,$buscar){
+        if(isset($buscar))
+            return $query->where('date','>=',$buscar);
+    }
+    public function scopeFechaFin($query ,$buscar){
+        if(isset($buscar))
+            return $query->where('date','<=',$buscar);
+    }
+
 
 }

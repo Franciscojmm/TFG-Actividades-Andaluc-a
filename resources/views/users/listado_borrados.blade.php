@@ -2,24 +2,25 @@
 
 @section('content')
     @role('encargado')
+
     @if(Session::has('notificationE'))
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
             {{Session::get('notificationE')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @elseif(Session::has('notification'))
-        <div class="alert alert-primary" role="alert">
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
             {{Session::get('notification')}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
     <div>
         <h1>Listado de Usuarios borrados</h1>
 
-        <button type="button" class="btn btn-link">
-            <a style="color: blue" href="{{route('listado_usu')}}">
+            <a class="btn btn-secondary mb-3" style="float: right" href="{{route('listado_usu')}}">
                 Volver al listado de usuarios
             </a>
-        </button>
 
         <div class="table table-responsive table-sm">
             <table id="users" class="table">

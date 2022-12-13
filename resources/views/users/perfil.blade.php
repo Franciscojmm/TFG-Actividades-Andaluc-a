@@ -122,9 +122,9 @@
 
                     <div class="col-md-3" style="margin: auto">
                         @if(Auth::user()->getFirstMedia()!=null)
-                            <img src="{{asset($usu->getFirstMedia()->getUrl())}}" class="img-fluid" alt="Responsive image">
+                            <img src="{{asset($usu->getFirstMedia()->getUrl())}}" class="img-fluid img-perf" alt="Responsive image">
                         @else
-                            <img src="{{asset('storage/default/usuario.png')}}">
+                            <img src="{{asset('storage/default/usuario.png')}}" class="img-fluid img-perf">
                         @endif
                         <div class="col-12">
                             <label for="img" style="font-weight: bold">{{ __('Imagen de perfil') }}</label>
@@ -134,14 +134,14 @@
 
     <div class="row-mb-9 text-md-start perf-btn" style="margin-top: 1%;margin-bottom: 1%;margin-left: 22%">
 
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-confirm">
             {{ __('Actualizar Perfil') }}
         </button>
-        <button type="button" class="btn btn-secondary" >
-            <a style="color: white" href="{{route('home')}}">
+
+            <a class="btn btn-secondary" href="{{route('home')}}">
                 Volver Atras
             </a>
-        </button>
+
     </div>
 
     </form>

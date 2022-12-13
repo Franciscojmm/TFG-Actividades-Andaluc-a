@@ -11,8 +11,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+
 
 
 class UserActivityController extends Controller
@@ -47,7 +48,6 @@ class UserActivityController extends Controller
     public function listarParticipantesActividad(Request $data)
     {
         $actividad = User_activities::where("id_activity","=",$data->id)->get();
-
 
 
         return view('Profesor.participantes_actividad', ["resultado" => $actividad]);
@@ -120,5 +120,21 @@ class UserActivityController extends Controller
         return to_route('mis_actividades')->with('notification', "¡Se proceso el cambio con exito!");
     }
 
+
+    public function descargarparticipantesPDF(Request $data){
+
+        $Registroactividad = User_activities::all()->where('id_activity','=',$data->id_registro);
+
+        $users = [];
+
+        foreach ($Registroactividad as $registro)
+        {
+            $users[] = User::withTrashed()->find($registro->id_user);
+        }
+
+        $pdf = PDF::loadView('pdfs.listadoParticipantesPDF',['resultado' => $users , 'nombre'=> $data->name_activity] );
+
+        return $pdf->download('listadoActividades.pdf');
+    }
 
 }

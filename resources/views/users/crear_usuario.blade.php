@@ -130,13 +130,13 @@
 
                         <div style="display: flex;">
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="tipo_user" id="flexRadioDefault1" value="profesor">
+                                <input class="form-check-input" type="radio" name="tipo_user" id="flexRadioDefault1" checked value="profesor">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Profesor
                                 </label>
                             </div>
                             <div class="form-check" style="margin-left: 5%">
-                                <input class="form-check-input" type="radio" name="tipo_user" id="flexRadioDefault2" checked value="encargado">
+                                <input class="form-check-input" type="radio" name="tipo_user" id="flexRadioDefault2" value="encargado">
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     Encargado
                                 </label>
@@ -145,14 +145,12 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button id="id_submitbutton" type="submit" class="btn btn-secondary">
+                                <button id="id_submitbutton" type="submit" class="btn" style="background-color: #22A39F!important;color: white">
                                     {{ __('Crear Usuario') }}
                                 </button>
-                                <button type="button" class="btn btn-link" style="background-color: #22A39F!important;">
-                                    <a style="color: white" href="{{route('listado_usu')}}">
+                                    <a class="btn btn-secondary" href="{{route('listado_usu')}}">
                                         Volver Atras
                                     </a>
-                                </button>
                             </div>
                         </div>
                     </form>

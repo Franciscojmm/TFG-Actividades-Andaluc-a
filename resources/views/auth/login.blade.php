@@ -60,7 +60,7 @@
 
                         <hr>
 
-                        <p class="h5" style="display: flex;justify-content: center">No tienes cuenta registrate <a style="margin-left: 3px" class="btn-link" href="{{route('register')}}"> aquí </a></p>
+                        <p class="h5" style="display: flex;justify-content: center">¿No tienes cuenta? Registrate <a style="margin-left: 3px" class="btn-link" href="{{route('register')}}"> aquí </a></p>
 
                     </form>
                 </div>

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+
     @role('encargado')
     <div class="container">
     <div class="row justify-content-center">
@@ -85,6 +87,9 @@
 
         </div>
     </div>
-
 @endrole
+    @if(\Illuminate\Support\Facades\Auth::user()== null)
+    <h1>Actividades Andalucía</h1>
+    @endif
 @endsection
+

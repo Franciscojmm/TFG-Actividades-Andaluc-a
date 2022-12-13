@@ -79,8 +79,8 @@
                                     <option value="{{1}}">Infantil</option>
                                     <option value="{{2}}">Primaria</option>
                                     <option value="{{3}}">ESO</option>
-                                    <option value="{{3}}">Bachillerato</option>
-                                    <option value="{{3}}">Formación Profesional</option>
+                                    <option value="{{4}}">Bachillerato</option>
+                                    <option value="{{5}}">Formación Profesional</option>
                                 </select>
                             </div>
                         </div>

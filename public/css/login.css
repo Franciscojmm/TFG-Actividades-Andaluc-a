@@ -70,6 +70,9 @@ a.page-link.active{
         margin-top: 5px;
         margin-bottom: 5px
     }
+    .message-activity{
+        margin-top: 25% !important;
+    }
 }
 li{
     display: flex!important;
@@ -108,7 +111,7 @@ img{
 
 .btn:hover{
     transition: all 1s;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 li:hover{
     transform: translateY(-5px);
@@ -130,4 +133,14 @@ li:hover{
 }
 .cards-activities{
     min-height: 405px;
+}
+.img-perf{
+    max-height: 370px;
+}
+.btn-confirm{
+    background-color: #22A39F!important;
+    color: white!important;
+}
+.message-activity{
+    margin-top: 5% !important;
 }

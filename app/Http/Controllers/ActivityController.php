@@ -32,10 +32,11 @@ class ActivityController extends Controller
 
     public function listar(Request $request)
     {
-        $resultado = Activity::select('*')->enseñanza($request->teaching)->get();
+
+        $resultado = Activity::select('*')->enseñanza($request->teaching)->fechaIn($request->date_ini)->fechaFin($request->date_fin)->get();
         $enseñanzas = Teaching::all();
 
-        return view('welcome', ["resultado" => $resultado ,"enseñanzas"=>$enseñanzas]);
+        return view('/Activities.listado_activities', ["resultado" => $resultado ,"enseñanzas"=>$enseñanzas] );
 
     }
 

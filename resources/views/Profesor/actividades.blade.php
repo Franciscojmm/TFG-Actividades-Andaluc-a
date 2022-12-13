@@ -41,7 +41,7 @@
             @endif
 
             @foreach($resultado as $actividad)
-                <div class="col-md-3">
+                <div class="col-xl-3 col-sm-6">
                     <div class="card card_activities">
                         <div class="card-header card-head-activities">{{ $actividad->name }}</div>
                         <div class="card-body cards-activities">

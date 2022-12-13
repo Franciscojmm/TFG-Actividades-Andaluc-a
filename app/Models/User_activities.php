@@ -12,7 +12,7 @@ class User_activities extends Model
     protected $fillable = ['ID', 'id_user' ,'id_activity' , 'description'];
 
     public function users(){
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsTo(User::class, 'id_user')->withTrashed();
     }
 
     public function activities(){

@@ -62,6 +62,6 @@
     </div>
 
     @else
-    <h3 class="h3" style="margin-left: 2%"> No esta inscrito en ninguna actividad <a href="{{route("actividades")}}">Ver todas las actividades.</a> </h3>
+    <h3 class="h3 message-activity" style="margin-left: 2%"> No esta inscrito en ninguna actividad <a style="margin-left: 1%" href="{{route("actividades")}}">Ver todas las actividades.</a> </h3>
     @endif
 @endsection
