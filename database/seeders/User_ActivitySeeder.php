@@ -28,7 +28,7 @@ class User_ActivitySeeder extends Seeder
         
         User_activities::create([
             'id_user' => 2,
-            'id_activity'=> 7
+            'id_activity'=> 6
         ]);
 
 
