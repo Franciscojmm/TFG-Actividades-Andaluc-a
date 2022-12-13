@@ -73,7 +73,7 @@ Route::post('/actualiza_perfil', [UserController::class, 'actualizar_perfil'])->
 
 //Profesor
 Route::get('/mis_actividades', [UserActivityController::class,'listar'])->name('mis_actividades');
-Route::post('/mis_actividades', [UserActivityController::class,'listar'])->name('mis_actividades');
+Route::post('/mis_actividades', [UserActivityController::class,'listar'])->name('mis_actividades1');
 Route::post('/mis_actividades_realizadas', [UserActivityController::class,'listarRealizadas'])->name('mis_actividades_realizadas');
 
 Route::post('/participantes_actividad', [UserActivityController::class,'listarParticipantesActividad'])->name('participantes_actividad');
