@@ -53,7 +53,7 @@
         </div>
 
         <div class="table-responsive-xxl">
-            <table id="users" class="table table-responsive-xxl">
+            <table id="activities" class="table table-responsive-xxl">
                 <thead class="listados-head">
                 <tr><th>Nombre</th> <th>Descripción</th>  <th>Fecha</th> <th>Hora</th> <th>Tipo de actividad</th> <th>Lugar</th> <th>Enseñanza</th> <th>Editar</th>  <th>Eliminar</th></tr>
                 </thead>
@@ -120,7 +120,7 @@
     <script src="//cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"></script>
     <script>
         $(document).ready(function () {
-            $('#users').DataTable({
+            $('#activities').DataTable({
                 language: {
                     "decimal": "",
                     "emptyTable": "No hay información",
