@@ -19,26 +19,18 @@ class User_ActivitySeeder extends Seeder
      */
     public function run()
     {
-        User_activities::create([
-            'id_user' => 2,
-            'id_activity'=> 1
-            ]);
-        User_activities::create([
-            'id_user' => 2,
-            'id_activity'=> 2
-        ]);
-        User_activities::create([
-            'id_user' => 2,
-            'id_activity'=> 3
-        ]);
-        User_activities::create([
-        'id_user' => 2,
-        'id_activity'=> 4
-        ]);
+       
         User_activities::create([
             'id_user' => 2,
             'id_activity'=> 5
         ]);
+        
+        
+        User_activities::create([
+            'id_user' => 2,
+            'id_activity'=> 7
+        ]);
+
 
     }
 
