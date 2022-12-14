@@ -89,3 +89,5 @@ Route::post('/listado_actividades_pdf', [ActivityController::class,'descargarLis
 
 
 Route::post('/listado_participantes_pdf', [UserActivityController::class,'descargarparticipantesPDF'])->name('descargar_pdf_participantes');
+
+Route::post('/actividades_cuerpos', [UserActivityController::class,'listarCuerpo'])->name('filtrarTodasActividades');

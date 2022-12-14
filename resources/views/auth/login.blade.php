@@ -51,9 +51,9 @@
                             </div>
                         </div>
 
-
                             <div class="col-md-3 text-md-center" style="display: flex;justify-content: center">
-                                <button type="submit" class="btn btn-secondary">
+
+                                <button type="submit" class="btn" style="background-color: #22A39F!important;color: white">
                                     {{ __('Iniciar Sesión') }}
                                 </button>
                             </div>

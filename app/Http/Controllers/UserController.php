@@ -51,27 +51,18 @@ class userController extends Controller
 
     public function listar(Request $request)
     {
+        $request->actividadSeleccionada = intval($request->actividadSeleccionada);
 
-        $resultado = User::all();
-        $actividades = Activity::all();
+        if (($request->actividadSeleccionada) != null)
+        $resultado = User::select('*')->teach($request->actividadSeleccionada)->get();
+        else
+            $resultado = User::all();
 
-        //hacer pruebas con más usuarios.
-        if(isset($request->actividadSeleccionada))
-        {
-            if($request->actividadSeleccionada!=-1) {
-                $consul = User_activities::where('id_activity', '=', $request->actividadSeleccionada)->get();
-                if(count($consul)>0) {
-                    $usuariosFiltrados = User::where('id', '=', $consul[0]->id_user)->get();
+        $actividades = Teaching::all();
 
-                    $resultado = $usuariosFiltrados;
-                }else {
-                    $resultado = [];
-                }
-            }
-            return view('users.listado_usuarios', ["resultado" => $resultado, "actividades" => $actividades, "actividadSeleccionada" => $request->actividadSeleccionada]);
-        }
+        return view('users.listado_usuarios', ["resultado" => $resultado, "actividades" => $actividades, "actividadSeleccionada" => $request->actividadSeleccionada]);
 
-        return view('users.listado_usuarios', ["resultado" => $resultado, "actividades"=>$actividades ]);
+
 
     }
 
@@ -180,27 +171,30 @@ public function crearUsu(Request $data)
         return to_route('listado_usus_eliminados')->with('notificationE', "Usuario eliminado de forma permanente");
     }
 
-    public function descargarLitadoPdf(){
+    public function descargarLitadoPdf(Request $request){
 
-        $usus = User::all();
-        view()->share('users.listado_usuarios',$usus);
 
-        $tabla = '<table id="users" class="table" style="border:1px solid black; width: 100%;">'
-                .'<thead style="background-color: #a0aec0">'
-                .'<tr><th>Nombre</th> <th>Apellidos</th>  <th>DNI</th> <th>Email</th> <th>Codigo del centro</th></tr>'
-                .'</thead>'
-                .'<tbody style="text-align: center">';
+        if (($request->selecc) != "0")
+            $usus = User::select('*')->teach($request->selecc)->get();
+        else
+            $usus = User::all();
 
-        foreach ($usus as $resul)
-        {
-           $tabla.= '<tr style="border:1px solid black;"> <td>'.$resul->name.'</td>'
-                       .'<td>'.$resul->surname.'</td>'
-               .'<td>'.$resul->dni.'</td>'
-               .'<td>'.$resul->email.'</td>'
-               .'<td>'.$resul->center_code.'</td></tr>';
-        }
+            $tabla = '<table id="users" class="table" style="border:1px solid black; width: 100%;">'
+                . '<thead style="background-color: #a0aec0">'
+                . '<tr><th>Nombre</th> <th>Apellidos</th>  <th>DNI</th> <th>Email</th> <th>Codigo del centro</th></tr>'
+                . '</thead>'
+                . '<tbody style="text-align: center">';
 
-        $tabla.="</tbody></table>";
+            foreach ($usus as $resul) {
+                $tabla .= '<tr style="border:1px solid black;"> <td>' . $resul->name . '</td>'
+                    . '<td>' . $resul->surname . '</td>'
+                    . '<td>' . $resul->dni . '</td>'
+                    . '<td>' . $resul->email . '</td>'
+                    . '<td>' . $resul->center_code . '</td></tr>';
+            }
+
+            $tabla .= "</tbody></table>";
+
 
 
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadHTML($tabla);

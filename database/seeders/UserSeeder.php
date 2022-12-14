@@ -24,21 +24,44 @@ class UserSeeder extends Seeder
             'name' => 'Pepe',
             'surname' => 'Navarro',
             'email' => 'pepito123@gmail.com',
-            'dni' => '72757677s',
+            'dni' => '72757677S',
             'body' => 1,
             'center_code' => '41700181',
-            'password' => Hash::make('pepito123'),
+            'password' => Hash::make('Pepito123!'),
         ])->assignRole('encargado');
 
         User::create([
             'name' => 'Juan',
             'surname' => 'Rodriguez',
             'email' => 'juan123@gmail.com',
-            'dni' => '12345567s',
+            'dni' => '12345567L',
             'body' => 5,
             'center_code' => '41702181',
-            'password' => Hash::make('juan123'),
+            'password' => Hash::make('Juan123!'),
         ])->assignRole('profesor');
+
+        User::create([
+            'name' => 'Alfredo',
+            'surname' => 'Gonzalez',
+            'email' => 'alfredo123@gmail.com',
+            'dni' => '98765567K',
+            'body' => 5,
+            'center_code' => '41702181',
+            'password' => Hash::make('Alfredo123!'),
+        ])->assignRole('profesor');
+
+
+        User::create([
+            'name' => 'Lucía',
+            'surname' => 'Alonso',
+            'email' => 'lucia123@gmail.com',
+            'dni' => '49995567F',
+            'body' => 5,
+            'center_code' => '41702181',
+            'password' => Hash::make('Lucia123!'),
+        ])->assignRole('profesor');
+
+
 
         User::create([
             'name' => 'Fernando',
@@ -47,7 +70,7 @@ class UserSeeder extends Seeder
             'dni' => '33456678s',
             'body' => 4,
             'center_code' => '41702181',
-            'password' => Hash::make('fernando123'),
+            'password' => Hash::make('Fernando123!'),
         ])->assignRole('profesor');
 
         User::create([
@@ -57,7 +80,7 @@ class UserSeeder extends Seeder
             'dni' => '45456678f',
             'body' => 2,
             'center_code' => '41702181',
-            'password' => Hash::make('maria123'),
+            'password' => Hash::make('Maria123!'),
         ])->assignRole('profesor');
 
 
@@ -68,7 +91,7 @@ class UserSeeder extends Seeder
             'dni' => '62456678J',
             'body' => 3,
             'center_code' => '41702181',
-            'password' => Hash::make('ana123'),
+            'password' => Hash::make('Ana123!'),
         ])->assignRole('profesor');
 
         User::create([
@@ -78,7 +101,7 @@ class UserSeeder extends Seeder
             'dni' => '90456678D',
             'body' => 2,
             'center_code' => '41702181',
-            'password' => Hash::make('alonso123'),
+            'password' => Hash::make('Alonso123!'),
         ])->assignRole('profesor');
 
     }

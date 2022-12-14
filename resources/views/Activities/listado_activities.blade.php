@@ -28,6 +28,7 @@
             </form>
             <form method="POST" action="{{ route('listado_actividades_pdf') }}">
                 @csrf
+                <input type="hidden" name="teach_pdf" value="{{$opciones['ens']}}"><input type="hidden" name="date_in_pdf" value="{{$opciones['di']}}"><input type="hidden" name="date_fin_pdf" value="{{$opciones['df']}}">
                 <button type="submit" class="btn btn-info" id="create" name="create" style="float: right" > Descargar PDF </button>
             </form>
         </div>
@@ -37,25 +38,37 @@
             <form method="GET" action="{{ route('listado_actividades') }}">
                 @csrf
             <div class="row" style="margin-bottom: 2%">
-                <label class="col-sm-3 col-xl-1 col-md-2 col-form-label text-md-end">{{ __('Cuerpos Educativos :') }}</label>
+                <label class="col-sm-3 col-xl-1 col-md-2 col-form-label text-md-start">{{ __('Enseñanza :') }}</label>
                 <div class="col-sm-12 col-md-12 col-lg-2">
             <select name='teaching' class="form-control">
-                <option value={{-1}}>{{"Todos"}}</option>
+                <option value="{{-1}}" >{{"Todos"}}</option>
                 @foreach ($enseñanzas as $teaching)
+                    @if((intval($opciones['ens'])) === $teaching->id)
+                    <option value="{{$teaching->id}}" selected >{{$teaching->name}}</option>
+                    @else
                     <option value="{{$teaching->id}}">{{$teaching->name}}</option>
+                    @endif
                 @endforeach
             </select>
             </div>
                 <div class="row col-lg-4">
-                    <label class="col-sm-8 col-xl-3 col-l-2 col-form-label text-start">{{ __('Fecha inicial :') }}</label>
+                    <label class="col-sm-8 col-xl-3 col-l-2 col-form-label text-start" >{{ __('Fecha inicial :') }}</label>
                     <div class="col-lg-8">
+                        @if($opciones['di'] != null)
+                        <input id="date" class="form-control" type="datetime-local"  value="{{$opciones['di']}}"  name="date_ini"  autocomplete="date" >
+                        @else
                         <input id="date" class="form-control" type="datetime-local"   name="date_ini"  autocomplete="date" >
+                        @endif
                     </div>
                 </div>
                 <div class="row col-lg-4">
                     <label class="col-sm-8 col-xl-3 col-l-2 col-form-label text-start">{{ __('Fecha final :') }}</label>
                     <div class="col-lg-8 mb-1">
-                        <input id="date" class="form-control" type="datetime-local"   name="date_fin"  autocomplete="date" >
+                        @if($opciones['df'] != null)
+                        <input id="date2" class="form-control" type="datetime-local"   value="{{$opciones['df']}}"  name="date_fin"  autocomplete="date" >
+                        @else
+                        <input id="date2" class="form-control" type="datetime-local"  name="date_fin"  autocomplete="date" >
+                        @endif
                     </div>
                 </div>
 

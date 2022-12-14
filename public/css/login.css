@@ -144,3 +144,19 @@ li:hover{
 .message-activity{
     margin-top: 5% !important;
 }
+
+.h1-inicial{
+    font-size: 4em!important;
+}
+.cards-inicio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-head-inicio{
+    background-color: #1a202c!important;
+    color: white!important;
+    width: 105%;
+    text-align: center;
+}

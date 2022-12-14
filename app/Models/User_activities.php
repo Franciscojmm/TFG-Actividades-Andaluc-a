@@ -18,5 +18,10 @@ class User_activities extends Model
     public function activities(){
         return $this->belongsTo(Activity::class, 'id_activity');
     }
-
+    public function scopeActivity($query ,$buscar){
+        if($buscar != null)
+            if(isset($buscar))
+                if($buscar != "-1")
+                return $query->where('id_activity','=',"$buscar");
+    }
 }

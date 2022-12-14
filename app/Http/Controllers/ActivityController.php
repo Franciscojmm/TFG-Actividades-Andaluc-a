@@ -32,10 +32,15 @@ class ActivityController extends Controller
 
     public function listar(Request $request)
     {
-        $resultado = Activity::select('*')->enseñanza($request->teaching)->get();
+
+        $resultado = Activity::select('*')->enseñanza($request->teaching)->fechaIn($request->date_ini)->fechaFin($request->date_fin)->get();
         $enseñanzas = Teaching::all();
 
-        return view('/Activities.listado_activities', ["resultado" => $resultado ,"enseñanzas"=>$enseñanzas]);
+        $arrayConTodo['ens'] = $request->teaching;
+        $arrayConTodo['di'] = $request->date_ini;
+        $arrayConTodo['df'] = $request->date_fin;
+
+        return view('/Activities.listado_activities', ["resultado" => $resultado ,"enseñanzas"=>$enseñanzas , "opciones" => $arrayConTodo]);
 
     }
 
@@ -112,8 +117,8 @@ class ActivityController extends Controller
         return back()->with('notificationE', "Se elimino la actividad.");
     }
 
-    public function descargarListadoPDF(){
-        $actividades = Activity::all();
+    public function descargarListadoPDF(Request $request){
+        $actividades = Activity::select('*')->enseñanza($request->teach_pdf)->fechaIn($request->date_in_pdf)->fechaFin($request->date_fin_pdf)->get();
 
         $pdf = PDF::loadView('pdfs.listadoActividadesPDF',['resultado' => $actividades]);
         $pdf->setPaper('a4', 'landscape');

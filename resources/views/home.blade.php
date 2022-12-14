@@ -89,7 +89,51 @@
     </div>
 @endrole
     @if(\Illuminate\Support\Facades\Auth::user()== null)
-    <h1>Actividades Andalucía</h1>
+        <div class="row" style="display: flex;justify-content: center">
+            <div class="col-md-12 animate__animated animate__rotateInDownLeft">
+                <p class="h1-inicial text-center">Actividades Andalucía</p>
+                <p style="max-height: 5%" class="h4 text-md-center">Una web donde los profesores de Andalucía podrán gestionar sus Actividades</p>
+            </div>
+            <div class="col-md-6 col-sm-12 animate__animated animate__fadeInUp animate__delay-1s" style="text-align: center">
+                <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-seminario_114360-7480.jpg?w=2000" class="d-block w-100" alt="seminario">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Seminarios</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="2000">
+                            <img src="https://img.freepik.com/foto-gratis/grupo-personas-trabajando-plan-negocios-oficina_1303-15779.jpg?w=2000" class="d-block w-100" alt="mesa de trabajo">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Mesas de trabajo</h5>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://desktime.com/blog/wp-content/uploads/2021/08/meeting-1024x708.png" class="d-block w-100" alt="reunion">
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>Reuniones</h5>
+                            </div>
+                        </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+                        <a class="btn btn-success btn-lg mt-2" href="{{route('login')}}">Iniciar Sesión</a>
+        </div>
+
+
     @endif
 @endsection
 

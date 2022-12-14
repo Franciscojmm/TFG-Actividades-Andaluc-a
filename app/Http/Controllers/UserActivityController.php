@@ -59,16 +59,32 @@ class UserActivityController extends Controller
         $fecha_actual = date("Y/m/d H:i:s");
         $resultado = Activity::where("activities.date",">=",$fecha_actual)->orderBy('date', 'asc')->get();
 
-        return view('Profesor.actividades', ["resultado" => $resultado]);
+        return view('Profesor.actividades', ["resultado" => $resultado ,"opciones"=>null]);
 
     }
 
-    public function listarCuerpo()
+    public function listarCuerpo(Request $request)
     {
-        $fecha_actual = date("Y/m/d H:i:s");
-        $resultado = Activity::where("activities.date",">=",$fecha_actual)->where("teaching",'=',Auth::user()->body)->orderBy('date', 'asc')->get();
+        $fecha_actual = date("Y-m-d H:i");
 
-        return view('Profesor.actividades', ["resultado" => $resultado,"mias" => "mias"]);
+        if($request->date_ini < $fecha_actual) {
+            $request->date_ini = $fecha_actual;
+        }
+
+
+        $opciones['di'] = $request->date_ini;
+        $opciones['df'] = $request->date_fin;
+
+        if($request->tipo_activity == "todas") {
+
+            $resultado = Activity::select('*')->fechaIn($request->date_ini)->fechaFin($request->date_fin)->orderBy('date', 'asc')->get();
+            return view('Profesor.actividades', ["resultado" => $resultado,"opciones"=>$opciones, "mias" => "todas"]);
+        }
+
+        else
+        $resultado = Activity::select('*')->enseñanza(Auth::user()->body)->fechaIn($request->date_ini)->fechaFin($request->date_fin)->orderBy('date', 'asc')->get();
+
+        return view('Profesor.actividades', ["resultado" => $resultado,"opciones"=>$opciones, "mias" => "mias"]);
 
     }
 
@@ -117,7 +133,7 @@ class UserActivityController extends Controller
             'id_activity'=>$data->actividad_cambio
         ]);
 
-        return to_route('mis_actividades')->with('notification', "¡Se proceso el cambio con exito!");
+        return to_route('mis_actividades')->with('notification', "¡Se procesó el cambio con exito!");
     }
 
 

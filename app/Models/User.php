@@ -63,10 +63,10 @@ class User extends Authenticatable implements HasMedia
     ];
 
 
-    public function scopeActividad($query ,$buscar){
+    public function scopeTeach($query ,$buscar){
         if(isset($buscar))
             if($buscar != -1)
-                return $query->where('id_actividad','=',"$buscar");
+                return $query->where('body','=',"$buscar");
     }
 
 }

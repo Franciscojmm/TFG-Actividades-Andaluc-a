@@ -15,7 +15,6 @@
         </div>
     @endif
 
-
     <div class="row">
         <p class="h1">Listado de Usuarios</p>
 
@@ -30,6 +29,9 @@
 
             <form method="POST" action="{{ route('descargar_pdf') }}">
                 @csrf
+                @if(isset($actividadSeleccionada))
+                <input type="hidden" name="selecc" value="{{intval($actividadSeleccionada)}}">
+                @endif
                 <button type="submit" class="btn btn-info" id="create" name="create" style="float: right" > Descargar PDF </button>
             </form>
 
@@ -46,7 +48,7 @@
             <form method="GET" action="{{ route('listado_usu') }}">
                 @csrf
                 <div class="row">
-                    <label class="col-sm-3 col-lg-1 col-form-label text-md-start">{{ __('Actividades :') }}</label>
+                    <label class="col-sm-3 col-lg-1 col-form-label text-md-start">{{ __('Cuerpo Enseñanza :') }}</label>
                     <div class="col-md-2">
                         <select name='actividadSeleccionada' class="form-control">
                             <option value={{-1}}>{{"Todas"}}</option>
@@ -78,7 +80,7 @@
         <div class="table-responsive-xxl">
             <table id="users" class="table table-responsive-xxl">
                 <thead class="listados-head">
-                <tr><th>Nombre</th> <th>Apellidos</th>  <th>DNI</th> <th>Email</th> <th>Enseñanza</th> <th>Cod. Centro</th> <th>Editar</th>  <th>Eliminar</th></tr>
+                <tr><th>Nombre</th> <th>Apellidos</th>  <th>DNI</th> <th>Email</th> <th>Enseñanza</th> <th>Cod. Centro</th> <th>Rol</th> <th>Editar</th> <th>Eliminar</th></tr>
                 </thead>
                 <tbody class="listados-body">
                 @foreach ($resultado as $resul)
@@ -88,6 +90,7 @@
                         <td>{{ $resul->email}}</td>
                         <td>{{ $resul->teachings->name}}</td>
                         <td>{{ $resul->center_code}}</td>
+                        <td>{{ $resul->getRoleNames()[0]}}</td>
                         <td>
                             <form method="GET" action="{{ route('editar_usu' ,$resul->id) }}">
                                 @csrf
